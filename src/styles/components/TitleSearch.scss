@@ -1,0 +1,42 @@
+@import '../global.scss';
+
+.search {
+    display: flex;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+
+    &__input {
+        width: 30.4rem;
+        height: 4rem;
+        border: none;
+        border-radius: 1rem;
+        font-size: 1.4rem;
+        padding-left: 3.8rem;
+        box-shadow: $inner-shadow;
+        background: none;
+        font-family: inherit;
+        color: var(--greyDark);
+
+        &::placeholder {
+            color: var(--greyLight-3);
+        }
+        &:focus {
+            outline: none;
+            box-shadow: $shadow;
+
+            + .search__icon {
+                color: var(--primary);
+            }
+        }
+    }
+
+    &__icon {
+        height: 2rem;
+        position: absolute;
+        font-size: 2rem;
+        padding: 0 1rem;
+        display: flex;
+        color: var(--greyDark);
+        transition: 0.3s ease;
+    }
+}

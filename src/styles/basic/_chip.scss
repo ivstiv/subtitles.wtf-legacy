@@ -1,0 +1,43 @@
+.chip {
+    justify-self: center;
+    width: 15rem;
+    height: 4rem;
+    border-radius: 1rem;
+    box-shadow: $shadow;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 1rem;
+
+    &:active {
+        box-shadow: $inner-shadow;
+    }
+
+    &__icon {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 1rem;
+        margin: 0 0 0 0.2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.8rem;
+        color: var(--primary);
+    }
+
+    p {
+        font-size: 1.5rem;
+        color: var(--greyDark);
+    }
+
+    &__close {
+        width: 1.6rem;
+        height: 1.6rem;
+        margin: 0 0.5rem;
+        display: flex;
+        font-size: 1.6rem;
+        color: var(--greyLight-3);
+        cursor: pointer;
+    }
+}

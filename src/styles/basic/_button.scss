@@ -1,0 +1,45 @@
+.btn {
+    width: 15rem;
+    height: 4rem;
+    border-radius: 1rem;
+    box-shadow: $shadow;
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin: 1rem;
+
+    &__primary {
+        grid-column: 1 / 2;
+        grid-row: 4 / 5;
+        background: var(--primary);
+        box-shadow: inset 0.2rem 0.2rem 1rem var(--primary-light), inset -0.2rem -0.2rem 1rem var(--primary-dark),
+            $shadow;
+        color: var(--greyLight-1);
+
+        &:hover {
+            color: var(--white);
+        }
+        &:active {
+            box-shadow: inset 0.2rem 0.2rem 1rem var(--primary-dark), inset -0.2rem -0.2rem 1rem var(--primary-light);
+        }
+    }
+
+    &__secondary {
+        grid-column: 1 / 2;
+        grid-row: 5 / 6;
+        color: var(--greyDark);
+        &:hover {
+            color: var(--primary);
+        }
+        &:active {
+            box-shadow: $inner-shadow;
+        }
+    }
+
+    p {
+        font-size: 1.6rem;
+    }
+}
