@@ -4,12 +4,11 @@
 			<img src="./assets/logo2.png" alt="logo">
 		</div>
 		<div class="searching-wrapper">
-			<SearchTitle></SearchTitle>
-			<h1 class="or">OR</h1>
 			<upload-file></upload-file>
+			<h1 class="or">OR</h1>
+			<SearchTitle></SearchTitle>
 		</div>
 		<movie-results></movie-results>
-		<h1>test</h1>
 	</div>
 </template>
 

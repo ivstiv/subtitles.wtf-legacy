@@ -1,12 +1,12 @@
 <template>
-    <div class="movie-results">
+    <div v-if="movieResults.length > 0" class="movie-results">
         <h1 class="title">Pick your movie</h1>
         <div class="grid-container">
             <main class="grid-item main">
                 <div ref="slider" class="items" :class="{ active: isDown }"  @mousedown="mouseDown" @mouseleave="mouseLeave" @mouseup="mouseUp" @mousemove="mouseMove">
-                    <div class="card item">
-                        <img src="https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg" alt="poster">
-                        <h1>The Avengers</h1>
+                    <div v-for="(movie, id) in movieResults" v-bind:key="id" class="card item">
+                        <img :src="movie.Poster" alt="poster">
+                        <h1>{{ movie.Title }}</h1>
                         <div class="buttons">
                             <div class="btn btn__primary">
                                 <p>Select</p>
@@ -16,46 +16,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="card item">
-                        <img src="https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SX300.jpg" alt="poster">
-                        <h1>Avengers: Infinity War</h1>
-                        <div class="buttons">
-                            <div class="btn btn__primary">
-                                <p>Select</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-info"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card item">
-                        <img src="https://m.media-amazon.com/images/M/MV5BMTM4OGJmNWMtOTM4Ni00NTE3LTg3MDItZmQxYjc4N2JhNmUxXkEyXkFqcGdeQXVyNTgzMDMzMTg@._V1_SX300.jpg" alt="poster">
-                        <h1>Avengers: Age of Ultron</h1>
-                        <div class="buttons">
-                            <div class="btn btn__primary">
-                                <p>Select</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-info"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card item">
-                        <img src="https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg" alt="poster">
-                        <h1>Avengers: Endgame</h1>
-                        <div class="buttons">
-                            <div class="btn btn__primary">
-                                <p>Select</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-info"></i>
-                            </div>
-                        </div>
-                    </div>
-                    
                 </div>
             </main>
         </div>
@@ -64,17 +24,26 @@
 </template>
 
 <script>
+import {EventBus} from '../event-bus'
+
 export default {
     data() {
         return {
             slider: null,
             isDown: false,
             startX: null,
-            scrollLeft: null
+            scrollLeft: null,
+            movieResults: []
         }
     },
 
     mounted() {
+        EventBus.$on('movie-results', movies => {
+            this.movieResults = movies;
+        });
+    },
+
+    updated() {
         this.slider = this.$refs.slider;
     },
 
