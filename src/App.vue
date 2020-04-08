@@ -1,9 +1,5 @@
 <template>
-	<div id="app">
-		<!--
-		<img alt="Vue logo" src="./assets/logo.png">
-		<HelloWorld msg="Welcome to Your Vue.js App"/>
-		-->
+	<div id="app" v-cloak @drop.prevent="fileDropped" @dragover.prevent>
 		<div class="logo">
 			<img src="./assets/logo2.png" alt="logo">
 		</div>
@@ -12,12 +8,15 @@
 			<h1 class="or">OR</h1>
 			<upload-file></upload-file>
 		</div>
+		<movie-results></movie-results>
+		<h1>test</h1>
 	</div>
 </template>
 
 <script>
-//import HelloWorld from './components/HelloWorld.vue'
+import {EventBus} from './event-bus'
 import SearchTitle from './components/TitleSearch.vue'
+import MovieResults from './components/MovieResults.vue'
 //import LanguageSearch from './components/LanguageSearch.vue'
 import UploadFile from './components/UploadFile.vue'
 
@@ -26,8 +25,15 @@ export default {
 	components: {
 		SearchTitle,
 		//LanguageSearch,
-		UploadFile
-		// HelloWorld
+		UploadFile,
+		MovieResults
+	},
+	methods: {
+		fileDropped(e) {
+			let droppedFiles = e.dataTransfer.files;
+			if(!droppedFiles) return;
+			EventBus.$emit('file-upload', droppedFiles[0]);
+		}
 	}
 };
 </script>

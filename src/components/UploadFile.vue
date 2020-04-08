@@ -1,23 +1,20 @@
 <template>
-    <div class="uploadFile-wrapper" v-cloak @drop.prevent="addFile" @dragover.prevent>
-        <input type="file" ref="file" style="display: none" @change="addFile">
+    <!--<div class="uploadFile-wrapper" v-cloak @drop.prevent="addFile" @dragover.prevent>-->
+    <div class="uploadFile-wrapper">
+        <input type="file" ref="file" style="display: none" @change="uploadFile">
         <h1>Upload a movie (drag & drop)</h1>
         <div v-if="!uploadDisabled" class="btn btn__primary" @click="$refs.file.click()">
             <p>Upload</p>
         </div>
-        <ul>
-            <li v-for="(file, id) in files" v-bind:key="id">
-                <div class="chip" @click="removeFile()">
-                    <div class="chip__icon">
-                        <i class="fas fa-file-video"></i>
-                    </div>
-                    <p>{{ file.name }}</p>
-                    <div class="chip__close">
-                        <i class="fas fa-times"></i>
-                    </div>
+            <div v-if="uploadDisabled" class="chip" @click="removeFile()">
+                <div class="chip__icon">
+                    <i class="fas fa-file-video"></i>
                 </div>
-            </li>
-        </ul>
+                <p>{{ movieFile.name }}</p>
+                <div class="chip__close">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
         <p class="note">
             *You can drag & drop your movie file anywhere on the page.
             *The movie file is not actually uploaded, but processed locally.
@@ -26,45 +23,43 @@
 </template>
 
 <script>
+import {EventBus} from '../event-bus'
 
 export default {
     data() {
         return {
-            files:[]
+            movieFile: null
         }
     },
 
     computed: {
         uploadDisabled() {
-            return this.files.length > 0;
+            return this.movieFile;
         }
     },
 
+    mounted() {
+        EventBus.$on('file-upload', (file) => {
+            this.movieFile = file;
+            this.emitMovieHash();
+        })
+    },
+
     methods:{
-        addFile(e) {
-            if(this.uploadDisabled) return;
-
-            let droppedFiles;
-            if(e.dataTransfer)
-                droppedFiles = e.dataTransfer.files;
-            else
-                droppedFiles = e.target.files;
-
+        uploadFile(e) {
+            let droppedFiles = e.target.files;
             if(!droppedFiles) return;
-            // this tip, convert FileList to array, credit: https://www.smashingmagazine.com/2018/01/drag-drop-file-uploader-vanilla-js/
-            ([...droppedFiles]).forEach(f => {
-                this.files.push(f);
-            });
-
-            this.getMovieHash();
+            this.movieFile = droppedFiles[0];
+            this.emitMovieHash();
         },
         removeFile(){
-            this.files = [];
+            this.movieFile = null;
             this.$refs.file.value = "";
         },
 
-        async getMovieHash() {
-            this.calculateHash(this.files[0])
+        // TODO: link this to the search component  
+        async emitMovieHash() {
+            this.calculateHash(this.movieFile)
                 .then(hash => {
                     console.log('Movie hash: '+hash);
                 });

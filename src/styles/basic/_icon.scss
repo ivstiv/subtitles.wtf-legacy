@@ -1,0 +1,23 @@
+.icon {
+    display: flex;
+    justify-content: space-between;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    box-shadow: $shadow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--greyDark);
+    transition: all .5s ease;
+  
+    &:active {
+        box-shadow: $inner-shadow;
+        color: var(--primary);
+    }
+    
+    &:hover {color: var(--primary);}
+    
+}

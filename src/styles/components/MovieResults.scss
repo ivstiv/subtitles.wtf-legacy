@@ -1,0 +1,116 @@
+@import '../global.scss';
+
+.title {
+    text-align: center;
+    font-size: 5rem;
+    margin-top: 1rem;
+    margin-bottom: -2rem;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    
+    grid-template-areas:
+      "main main main";
+    @media screen and (max-width: 500px) {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "main";
+    }
+}
+  
+.grid-item {
+    font-size: 1em;
+    font-weight: 700;
+}
+
+.main {
+    grid-area: main;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+    scrollbar-width: thin;
+  	scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+
+.items {
+    position: relative;
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    transition: all 0.2s;
+    transform: scale(0.98);
+    will-change: transform;
+    user-select: none;
+    cursor: pointer;
+    
+    scrollbar-width: thin;
+  	scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+	  
+	&::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: var(--thumbBG) ;
+		border-radius: 10px;
+    }
+
+    &:first-child {
+        padding-left: 40rem;
+
+        @media screen and (max-width: 770px) {
+            padding-left: 20rem;
+        }
+
+        @media screen and (max-width: 440px) {
+            padding-left: 0rem;
+        }
+    }
+}
+
+.items.active {
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+    transform: scale(1);
+}
+
+.item {
+    display: inline-block;
+    margin: 2em 1em;
+    @media screen and (max-width: 500px) {
+        min-height: 200px;
+        min-width: 200px;
+    }
+}
+
+.card {
+    width: 35rem;
+    padding: 0;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+
+    img {
+        display: block;
+        border-radius: 3rem;
+        box-shadow: $shadow;
+        margin: 0 auto;
+        
+    }
+
+    h1 {
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+    .buttons {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+}
