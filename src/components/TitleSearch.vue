@@ -1,5 +1,6 @@
 <template>
     <div class="card">
+        <h1>Search by title</h1>
         <div class="search">
             <input type="text" class="search__input" placeholder="Movie title...">
             <div class="search__icon">

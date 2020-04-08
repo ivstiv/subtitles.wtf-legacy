@@ -1,0 +1,73 @@
+@import '../global.scss';
+
+.uploadFile-wrapper {
+	width: 50rem;
+	border-radius: 3rem;
+	box-shadow: 0.8rem 0.8rem 1.4rem var(--greyLight-2),
+				-0.2rem -0.2rem 1.8rem var(--white);
+    padding: 3rem;
+
+	@media (max-width: 560px) {
+        width: 35rem;
+    }
+    
+    h1 {
+        margin-bottom: 1rem;
+    }
+
+	img {
+        display: block;
+		width: 50%;
+		height: auto;
+		box-shadow: $inner-shadow;
+        padding: 5rem;
+        margin: 0 auto;
+		border-radius: 3rem;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
+    .chip {
+        width: 100%;
+        padding: 2rem;
+
+        &:hover {
+            > p {
+                color: var(--primary);
+            }
+            > .chip__close {
+                color: var(--primary);
+            }
+        }
+
+        &__icon {
+            font-size: 3rem;
+            padding: 0 1rem;
+            display: flex;
+            transition: 0.3s ease;
+        }
+
+        & p {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: 0.3s ease;
+        }
+
+        &__close {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            transition: 0.3s ease;
+        }
+    }
+    /*
+    button {
+        width: 100%;
+        box-shadow: $shadow;
+        background: var(--greyLight-1);
+        border-radius: 3rem;
+        padding: 5rem;
+    }*/
+}

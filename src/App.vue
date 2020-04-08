@@ -9,7 +9,8 @@
 		</div>
 		<div class="searching-wrapper">
 			<SearchTitle></SearchTitle>
-			<LanguageSearch></LanguageSearch>
+			<h1 class="or">OR</h1>
+			<upload-file></upload-file>
 		</div>
 	</div>
 </template>
@@ -17,13 +18,15 @@
 <script>
 //import HelloWorld from './components/HelloWorld.vue'
 import SearchTitle from './components/TitleSearch.vue'
-import LanguageSearch from './components/LanguageSearch.vue'
+//import LanguageSearch from './components/LanguageSearch.vue'
+import UploadFile from './components/UploadFile.vue'
 
 export default {
 	name: "App",
 	components: {
 		SearchTitle,
-		LanguageSearch
+		//LanguageSearch,
+		UploadFile
 		// HelloWorld
 	}
 };
@@ -60,11 +63,20 @@ export default {
 	}
 }
 
+.or {
+	font-size: 5rem;
+	@media (max-width: 1124px) {
+		width: 100%;
+		text-align: center;
+    }
+}
+
 .searching-wrapper {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+	justify-content: space-evenly;
+	margin-top: 3rem;
 }
 
 </style>
