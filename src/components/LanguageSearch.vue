@@ -1,5 +1,6 @@
 <template>
   <div class="card">
+    <h1>Choose a language</h1>
     <div class="search">
       <input type="text" class="search__input" placeholder="Language..." />
       <div class="search__icon">

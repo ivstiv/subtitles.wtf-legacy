@@ -1,9 +1,14 @@
 <template>
-    <div v-if="movieResults.length > 0" class="movie-results">
+    <div id="movieResults" v-if="movieResults.length > 0" class="movie-results">
         <h1 class="title">Pick your movie</h1>
         <div class="grid-container">
             <main class="grid-item main">
-                <div ref="slider" class="items" :class="{ active: isDown }"  @mousedown="mouseDown" @mouseleave="mouseLeave" @mouseup="mouseUp" @mousemove="mouseMove">
+                <div ref="slider" class="items" :class="{ active: isDown }"  
+                    @mousedown="mouseDown" 
+                    @mouseleave="mouseLeave" 
+                    @mouseup="mouseUp" 
+                    @mousemove="mouseMove" 
+                    v-touch:swipe="stopAutoScrollAnimation">
                     <div v-for="(movie, id) in movieResults" v-bind:key="id" class="card item">
                         <img :src="movie.Poster" alt="poster">
                         <h1>{{ movie.Title }}</h1>
@@ -33,18 +38,26 @@ export default {
             isDown: false,
             startX: null,
             scrollLeft: null,
-            movieResults: []
+            movieResults: [],
+            scrollingAnimation: null
         }
     },
 
     mounted() {
         EventBus.$on('movie-results', movies => {
             this.movieResults = movies;
+            if(this.$refs.slider)
+                this.$refs.slider.scrollLeft = 0;
+            clearInterval(this.scrollingAnimation);
+            this.scrollingAnimation = setInterval(() => {
+                this.$refs.slider.scrollLeft = this.$refs.slider.scrollLeft + 1;
+            }, 10);
         });
     },
 
     updated() {
         this.slider = this.$refs.slider;
+        this.$scrollTo(this.slider, {duration: 2000});
     },
 
     methods:{
@@ -53,7 +66,7 @@ export default {
             this.isDown = true;
             this.startX = e.pageX - this.slider.offsetLeft;
             this.scrollLeft = this.slider.scrollLeft;
-            
+            this.stopAutoScrollAnimation();
         },
 
         mouseMove(e) {
@@ -70,6 +83,13 @@ export default {
         mouseUp() {
             this.isDown = false;
         },
+
+        stopAutoScrollAnimation() {
+            if(this.scrollingAnimation) {
+                clearInterval(this.scrollingAnimation);
+                this.scrollingAnimation = null;
+            }
+        }
     }
 }
 </script>

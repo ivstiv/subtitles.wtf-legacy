@@ -9,7 +9,10 @@
 	},
 	"dependencies": {
 		"core-js": "^3.6.4",
-		"vue": "^2.6.11"
+		"save": "^2.4.0",
+		"vue": "^2.6.11",
+		"vue-scrollto": "^2.17.1",
+		"vue2-touch-events": "^2.2.1"
 	},
 	"devDependencies": {
 		"@vue/cli-plugin-babel": "~4.3.0",

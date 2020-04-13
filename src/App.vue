@@ -9,6 +9,7 @@
 			<SearchTitle></SearchTitle>
 		</div>
 		<movie-results></movie-results>
+		<LanguageSearch></LanguageSearch>
 	</div>
 </template>
 
@@ -16,14 +17,14 @@
 import {EventBus} from './event-bus'
 import SearchTitle from './components/TitleSearch.vue'
 import MovieResults from './components/MovieResults.vue'
-//import LanguageSearch from './components/LanguageSearch.vue'
+import LanguageSearch from './components/LanguageSearch.vue'
 import UploadFile from './components/UploadFile.vue'
 
 export default {
 	name: "App",
 	components: {
 		SearchTitle,
-		//LanguageSearch,
+		LanguageSearch,
 		UploadFile,
 		MovieResults
 	},
