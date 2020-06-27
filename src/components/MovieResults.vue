@@ -16,20 +16,6 @@
                         v-bind:poster="movie.Poster" 
                         v-bind:imdbID="movie.imdbID"
                     ></MovieCard>
-                    <!--
-                    <div v-for="(movie, id) in movieResults" v-bind:key="id" class="card item">
-                        <img :src="movie.Poster" alt="poster">
-                        <h1>{{ movie.Title }}</h1>
-                        <div class="buttons">
-                            <div class="btn btn__primary">
-                                <p>Select</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-info"></i>
-                            </div>
-                        </div>
-                    </div>
-                    -->
                 </div>
             </main>
         </div>

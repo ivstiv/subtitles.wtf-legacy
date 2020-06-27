@@ -9,7 +9,7 @@
 			<SearchTitle></SearchTitle>
 		</div>
 		<movie-results></movie-results>
-		<LanguageSearch></LanguageSearch>
+		<subtitles-results></subtitles-results>
 	</div>
 </template>
 
@@ -17,16 +17,16 @@
 import {EventBus} from './event-bus'
 import SearchTitle from './components/TitleSearch.vue'
 import MovieResults from './components/MovieResults.vue'
-import LanguageSearch from './components/LanguageSearch.vue'
 import UploadFile from './components/UploadFile.vue'
+import SubtitlesResults from './components/SubtitlesResults.vue'
 
 export default {
 	name: "App",
 	components: {
 		SearchTitle,
-		LanguageSearch,
 		UploadFile,
-		MovieResults
+		MovieResults,
+		SubtitlesResults
 	},
 	methods: {
 		fileDropped(e) {

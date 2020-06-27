@@ -3,7 +3,7 @@
     <img :src="getPoster" alt="poster">
     <h1>{{ this.title }}</h1>
     <div class="buttons">
-        <div class="btn btn__primary">
+        <div class="btn btn__primary" @click="selectMovie">
             <p>Select</p>
         </div>
         <div class="icon">
@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import {EventBus} from '../event-bus'
+
 export default {
     props: ['title', 'poster', 'imdbID'],
 
@@ -23,6 +25,13 @@ export default {
                 return require("../assets/no-image.jpg");
             else 
                 return this.poster;
+        }
+    },
+
+    methods: {
+        selectMovie() {
+            console.log('Selected movie:'+this.imdbID);
+            EventBus.$emit('selected-movie', this.imdbID);
         }
     }
 }
