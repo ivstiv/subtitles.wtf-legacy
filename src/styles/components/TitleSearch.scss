@@ -39,9 +39,10 @@
         display: flex;
         color: var(--greyDark);
         transition: 0.3s ease;
+        
 
-        @media screen and (max-width: 560px) {
-            margin-top: -3rem;
+        @media screen and (max-width: 567px) {
+            margin-top: -60px;
         }
     }
 }

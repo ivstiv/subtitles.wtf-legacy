@@ -1,0 +1,41 @@
+@import '../global.scss';
+
+.item {
+    display: inline-block;
+    margin: 2em 1em;
+    @media screen and (max-width: 500px) {
+        min-height: 200px;
+        min-width: 200px;
+    }
+}
+
+.movie-card {
+    width: 35rem;
+    padding: 0;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    box-shadow: $shadow;
+    border-radius: 3rem;
+
+    img {
+        display: block;
+        border-radius: 3rem;
+        margin: 0 auto;
+        height: 35rem;
+    }
+
+    h1 {
+        margin-top: 1rem;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .buttons {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+}

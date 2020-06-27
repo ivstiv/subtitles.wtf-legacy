@@ -2,6 +2,7 @@
 
 .search {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     font-family: "Poppins", sans-serif;
 
@@ -38,6 +39,10 @@
         display: flex;
         color: var(--greyDark);
         transition: 0.3s ease;
+
+        @media screen and (max-width: 567px) {
+            margin-top: -60px;
+        }
     }
 }
 

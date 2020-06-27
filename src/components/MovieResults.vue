@@ -1,6 +1,6 @@
 <template>
     <div id="movieResults" v-if="movieResults.length > 0" class="movie-results">
-        <h1 class="title">Pick your movie</h1>
+        <h1 ref="title" class="title">Pick your movie</h1>
         <div class="grid-container">
             <main class="grid-item main">
                 <div ref="slider" class="items" :class="{ active: isDown }"  
@@ -9,6 +9,14 @@
                     @mouseup="mouseUp" 
                     @mousemove="mouseMove" 
                     v-touch:swipe="stopAutoScrollAnimation">
+                    <MovieCard 
+                        v-for="(movie, id) in movieResults" 
+                        v-bind:key="id" 
+                        v-bind:title="movie.Title" 
+                        v-bind:poster="movie.Poster" 
+                        v-bind:imdbID="movie.imdbID"
+                    ></MovieCard>
+                    <!--
                     <div v-for="(movie, id) in movieResults" v-bind:key="id" class="card item">
                         <img :src="movie.Poster" alt="poster">
                         <h1>{{ movie.Title }}</h1>
@@ -21,6 +29,7 @@
                             </div>
                         </div>
                     </div>
+                    -->
                 </div>
             </main>
         </div>
@@ -30,8 +39,14 @@
 
 <script>
 import {EventBus} from '../event-bus'
+import MovieCard from './MovieCard.vue'
 
 export default {
+
+    components: {
+        MovieCard
+    },
+
     data() {
         return {
             slider: null,
@@ -39,7 +54,7 @@ export default {
             startX: null,
             scrollLeft: null,
             movieResults: [],
-            scrollingAnimation: null
+            scrollingAnimation: null,
         }
     },
 
@@ -51,13 +66,13 @@ export default {
             clearInterval(this.scrollingAnimation);
             this.scrollingAnimation = setInterval(() => {
                 this.$refs.slider.scrollLeft = this.$refs.slider.scrollLeft + 1;
-            }, 10);
+            }, 20);
         });
     },
 
     updated() {
         this.slider = this.$refs.slider;
-        this.$scrollTo(this.slider, {duration: 2000});
+        this.$scrollTo(this.$refs.title, {duration: 2000});
     },
 
     methods:{
