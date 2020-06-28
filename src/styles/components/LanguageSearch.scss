@@ -1,14 +1,12 @@
 @import '../global.scss';
 
-.title {
-    text-align: center;
-    font-size: 5rem;
-    margin-top: 1rem;
-}
-
 .card {
-    box-shadow: none;
-    padding: 0rem;
+    margin-top: 3rem;
+
+    @media (max-width: 560px) {
+        width: 35rem;
+        padding: 2rem;
+    }
 }
 
 .search {
@@ -54,7 +52,6 @@
         margin-bottom: 1rem;
 
         @media screen and (max-width: 567px) {
-            margin-top: -60px;
         }
     }
 }
@@ -68,4 +65,9 @@
 
 .chip:not(:first-child) {
     margin-left: 1rem;
+}
+
+.tip {
+    margin-left: .5rem;
+    align-self: center;
 }

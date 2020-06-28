@@ -14,8 +14,7 @@
             {{ searchError }}
         </p>
         <p class="note">
-            *If there are multiple movies with similar names 
-            you can pick the exact match later.
+            Data provided by <a href="https://www.omdbapi.com/" target="_blank">OMDb API</a>.
         </p>
     </div>
 </template>

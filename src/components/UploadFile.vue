@@ -2,9 +2,9 @@
     <!--<div class="uploadFile-wrapper" v-cloak @drop.prevent="addFile" @dragover.prevent>-->
     <div class="uploadFile-wrapper">
         <input type="file" ref="file" style="display: none" @change="uploadFile">
-        <h1>Upload a movie (drag & drop)</h1>
+        <h1>Select a movie (drag & drop)</h1>
         <div v-if="!uploadDisabled" class="btn btn__primary" @click="$refs.file.click()">
-            <p>Upload</p>
+            <p>Select</p>
         </div>
             <div v-if="uploadDisabled" class="chip" @click="removeFile()">
                 <div class="chip__icon">
@@ -16,8 +16,7 @@
                 </div>
             </div>
         <p class="note">
-            *You can drag & drop your movie file anywhere on the page.
-            *The movie file is not actually uploaded, but processed locally.
+            The file is not actually uploaded, but processed locally.
         </p>
     </div>
 </template>
@@ -55,6 +54,7 @@ export default {
         removeFile(){
             this.movieFile = null;
             this.$refs.file.value = "";
+            EventBus.$emit('selected-hash-clear');
         },
 
         // TODO: link this to the search component  
@@ -62,6 +62,7 @@ export default {
             this.calculateHash(this.movieFile)
                 .then(hash => {
                     console.log('Movie hash: '+hash);
+                    EventBus.$emit('selected-hash', hash);
                 });
         },
 

@@ -1,7 +1,18 @@
-.searching-details {
-    width: 35rem;
+@import '../global.scss';
 
-    h2 {
-        margin-left: 1rem;
+h2 {
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+span {
+    font-weight: normal;
+}
+
+a {
+    color: blue;
+    text-decoration: underline;
+
+    &:hover {
+        cursor: pointer;
     }
 }

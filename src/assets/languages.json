@@ -8,5 +8,6 @@
     {"name": "Italian","code": "ita"},
     {"name": "French","code": "fra"},
     {"name": "Chinese","code": "zho"},
-    {"name": "Norwegian","code": "nor"}
+    {"name": "Norwegian","code": "nor"},
+    {"name": "Belarusian","code": "bel"}
 ]

@@ -31,7 +31,7 @@ export default {
     methods: {
         selectMovie() {
             console.log('Selected movie:'+this.imdbID);
-            EventBus.$emit('selected-movie', this.imdbID);
+            EventBus.$emit('selected-movie', {"title": this.title, "imdbid": this.imdbID});
         }
     }
 }

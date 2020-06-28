@@ -54,6 +54,10 @@ export default {
                 this.$refs.slider.scrollLeft = this.$refs.slider.scrollLeft + 1;
             }, 20);
         });
+
+        EventBus.$on('selected-movie', () => {
+            this.movieResults = [];
+        });
     },
 
     updated() {

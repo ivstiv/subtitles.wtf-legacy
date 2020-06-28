@@ -1,5 +1,7 @@
 @import '../global.scss';
-
+.card {
+    margin-top: 3rem;
+}
 .search {
     display: flex;
     flex-wrap: wrap;
@@ -41,7 +43,7 @@
         transition: 0.3s ease;
         
 
-        @media screen and (max-width: 567px) {
+        @media screen and (max-width: 568px) {
             margin-top: -60px;
         }
     }
