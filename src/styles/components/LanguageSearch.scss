@@ -9,6 +9,7 @@
     }
 }
 
+
 .search {
     display: flex;
     flex-wrap: wrap;
@@ -26,7 +27,6 @@
         background: none;
         font-family: inherit;
         color: var(--greyDark);
-        margin-bottom: 1rem;
 
         &::placeholder {
             color: var(--greyLight-3);
@@ -49,10 +49,6 @@
         display: flex;
         color: var(--greyDark);
         transition: 0.3s ease;
-        margin-bottom: 1rem;
-
-        @media screen and (max-width: 567px) {
-        }
     }
 }
 
@@ -61,6 +57,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: left;
+    margin-top: 1rem;
 }
 
 .chip:not(:first-child) {

@@ -2,6 +2,7 @@
 .card {
     margin-top: 3rem;
 }
+
 .search {
     display: flex;
     flex-wrap: wrap;
@@ -43,10 +44,15 @@
         transition: 0.3s ease;
         
 
-        @media screen and (max-width: 568px) {
-            margin-top: -60px;
-        }
+        // @media screen and (max-width: 568px) {
+        //     margin-top: -30px;
+        // }
     }
+}
+
+.flexFix {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .error {

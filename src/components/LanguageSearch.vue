@@ -1,7 +1,6 @@
 <template>
-    <div class="lang-search-wrapper">
         <div class="card">
-            <h1 id="langSearch" ref="langSearch">Choose a language</h1>
+            <h1 id="langSearch" ref="langSearch" class="title">Choose a language</h1>
             <div class="search">
                 <input type="text" v-model="queryLang" @input="updateRecommendedLangs" class="search__input" placeholder="Language..." />
                 <div class="search__icon">
@@ -38,7 +37,6 @@
                 Start typing and click the chip.
             </p>
         </div>
-    </div>
 </template>
 
 <style lang="scss" scoped>

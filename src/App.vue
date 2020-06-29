@@ -49,8 +49,8 @@
 					</div>
 				</div>
 
-				<div class="chip">
-					<div class="chip__icon" @click="redirectTo('https://github.com/Ivstiv/subtitles.wtf/issues')">
+				<div class="chip" @click="redirectTo('https://github.com/Ivstiv/subtitles.wtf/issues')">
+					<div class="chip__icon">
 						<i class="fas fa-user-edit"></i>
 					</div>
 					<p>Additional features</p>
@@ -74,16 +74,13 @@
 		<movie-results></movie-results>
 		<div class="searching-wrapper">
 			<upload-file></upload-file>
-			<!--<h1 class="or">OR</h1>-->
 			<SearchTitle></SearchTitle>
 			<language-search></language-search>
 		</div>
 		<div class="searching-wrapper">
-			
-			<!--<h1 class="or">AND</h1>-->
 			<SearchingDetails></SearchingDetails>
+			<subtitles-results></subtitles-results>
 		</div>
-		<subtitles-results></subtitles-results>
 	</div>
 </template>
 

@@ -1,10 +1,12 @@
 <template>
     <div class="card">
-        <h1>Search by title</h1>
-        <div class="search">
-            <input type="text" v-model="queryTitle" class="search__input" placeholder="Movie title...">
-            <div class="search__icon">
-                <i class="fas fa-search"></i>
+        <h1 class="title">Search by title</h1>
+        <div class="flexFix">
+            <div class="search">
+                <input type="text" v-model="queryTitle" class="search__input" placeholder="Movie title...">
+                <div class="search__icon">
+                    <i class="fas fa-search"></i>
+                </div>
             </div>
             <div class="btn btn__primary" @click="search">
                 <span v-if="isSearching"><div class="loader"></div></span>
@@ -42,7 +44,7 @@ export default {
                 this.searchError = "";
                 this.isSearching = true;
                 console.log('Searching title:'+this.queryTitle.trim())
-                fetch('https://subtitles.wtf/movies.php?query='+this.queryTitle.trim()) 
+                fetch('https://subtitles.wtf/api/movies.php?query='+this.queryTitle.trim()) 
                     .then(response => response.json())
                     .then(data => {
                         console.log(data);
@@ -55,6 +57,7 @@ export default {
                     })
                     .catch(function(err) {
                         console.log("[SEARCHING ERROR]: "+err);
+                        this.isSearching = false;
                     });
             }else{
                 this.queryTitle = "";
