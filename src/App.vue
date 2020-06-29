@@ -139,7 +139,7 @@ export default {
 
 	@media (max-width: 1700px) {
 			margin-left: 0;
-		}
+	}
 
 	img {
 		max-width: 100%;

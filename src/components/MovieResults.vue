@@ -56,7 +56,10 @@ export default {
         });
 
         EventBus.$on('selected-movie', () => {
-            this.movieResults = [];
+            document.getElementById('movieResults').classList.add('hidden');
+            setTimeout(() => {
+                this.movieResults = [];
+            }, 1000);
         });
     },
 

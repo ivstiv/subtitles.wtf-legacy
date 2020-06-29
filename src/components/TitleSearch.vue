@@ -7,7 +7,8 @@
                 <i class="fas fa-search"></i>
             </div>
             <div class="btn btn__primary" @click="search">
-                <p>Search</p>
+                <span v-if="isSearching"><div class="loader"></div></span>
+                <p v-else>Search</p> 
             </div>
         </div>
         <p v-if="searchError" class="note error">
@@ -27,19 +28,25 @@ export default {
     data() {
         return {
             queryTitle: "",
-            searchError: ""
+            searchError: "",
+            isSearching: false,
         }
     },
 
     methods: {
         search() {
+            // prevent spamming
+            if(this.isSearching) return;
+
             if(this.queryTitle.trim()) {
                 this.searchError = "";
+                this.isSearching = true;
                 console.log('Searching title:'+this.queryTitle.trim())
                 fetch('https://subtitles.wtf/movies.php?query='+this.queryTitle.trim()) 
                     .then(response => response.json())
                     .then(data => {
                         console.log(data);
+                        this.isSearching = false;
                         if(data.Error) {
                             this.searchError = data.Error;
                         }else{

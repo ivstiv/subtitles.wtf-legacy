@@ -1,5 +1,10 @@
 @import '../global.scss';
-
+.card {
+    margin-left: -5rem;
+    @media (max-width: 1700px) {
+        margin-left: 0;
+    }
+} 
 h2 {
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
