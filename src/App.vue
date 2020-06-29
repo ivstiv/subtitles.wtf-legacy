@@ -1,11 +1,76 @@
 <template>
 	<div id="app" v-cloak @drop.prevent="fileDropped" @dragover.prevent>
-		<div id="forkme">
-			<a href="https://github.com/Ivstiv/subtitles.wtf" target="_blank">Find me on <i class="fab fa-github"></i></a>
+		
+		<div class="header-wrapper">
+			<div class="left-chips">
+				<div class="chip" @click="redirectTo('https://github.com/Ivstiv/subtitles.wtf')">
+					<div class="chip__icon">
+						<i class="fab fa-github"></i>
+					</div>
+					<p>Available on Github</p>
+					<div class="chip__close">
+						<i class="fas fa-check"></i>
+					</div>
+				</div>
+
+				<div class="chip">
+					<div class="chip__icon">
+						<i class="fas fa-user-secret"></i>
+					</div>
+					<p>No advertisements</p>
+					<div class="chip__close">
+						<i class="fas fa-check"></i>
+					</div>
+				</div>
+
+				<div class="chip">
+					<div class="chip__icon">
+						<i class="fas fa-moon"></i>
+					</div>
+					<p>Dark theme support</p>
+					<div class="chip__close">
+						<i class="fas fa-check"></i>
+					</div>
+				</div>
+			</div>
+			
+			<div class="logo">
+				<img src="./assets/logo2.png" alt="logo">
+			</div>
+
+			<div class="right-chips">
+				<div class="chip" @click="redirectTo('https://github.com/Ivstiv/subtitles.wtf/issues')">
+					<div class="chip__icon">
+						<i class="fas fa-exclamation-triangle"></i>
+					</div>
+					<p>There is a problem</p>
+					<div class="chip__close">
+						<i class="fas fa-question"></i>
+					</div>
+				</div>
+
+				<div class="chip">
+					<div class="chip__icon" @click="redirectTo('https://github.com/Ivstiv/subtitles.wtf/issues')">
+						<i class="fas fa-user-edit"></i>
+					</div>
+					<p>Additional features</p>
+					<div class="chip__close">
+						<i class="fas fa-question"></i>
+					</div>
+				</div>
+
+				<div class="chip" @click="redirectTo('https://discord.gg/VMSDGVD')">
+					<div class="chip__icon">
+						<i class="fab fa-discord"></i>
+					</div>
+					<p>Find me on Discord</p>
+					<div class="chip__close">
+						<i class="fas fa-question"></i>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="logo">
-			<img src="./assets/logo2.png" alt="logo">
-		</div>
+
 		<movie-results></movie-results>
 		<div class="searching-wrapper">
 			<upload-file></upload-file>
@@ -46,6 +111,10 @@ export default {
 			let droppedFiles = e.dataTransfer.files;
 			if(!droppedFiles) return;
 			EventBus.$emit('file-upload', droppedFiles[0]);
+		},
+
+		redirectTo(url) {
+			window.open(url, '_blank');
 		}
 	}
 };
@@ -55,18 +124,22 @@ export default {
 @import 'styles/global.scss';
 
 .logo {
-	width: 50rem;
+	width: 55rem;
 	border-radius: 3rem;
 	box-shadow: 0.8rem 0.8rem 1.4rem var(--greyLight-2),
 				-0.2rem -0.2rem 1.8rem var(--white);
 	padding: 2rem;
-	margin: 0 auto;
 	margin-top: 1rem;
+	margin-left: -5rem;
 	cursor: pointer;
 
 	@media (max-width: 560px) {
 		width: 35rem;
 	}
+
+	@media (max-width: 1700px) {
+			margin-left: 0;
+		}
 
 	img {
 		max-width: 100%;
@@ -98,28 +171,26 @@ export default {
 	margin-top: 3rem;
 }
 
-
-#forkme {
-    transform: rotate(45deg);
-    background-color: #FFF;
-    overflow: hidden;
-    position: absolute;
-    z-index: 300;
-    width: 240px;
-    right: -60px;
-    top: 46px;
-    border-style: solid;
-    border-color: #000;
+.chip {
+	width: 23rem;
 }
 
-#forkme a {
-    color: #404040;
-    display: block;
-    /*font: 13px Helvetica Neue,Arial,sans-serif;*/
-    margin: 0.05em 0px 0.075em;
-    padding: 0.6em;
-    text-align: center;
-    text-decoration: none;
+.header-wrapper {
+	display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+	justify-content: space-around;
+
+	.left-chips, .right-chips {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		margin: 0 auto;
+
+		@media (max-width: 1116px) {
+			display: none;
+		}
+	}
 }
 
 </style>
