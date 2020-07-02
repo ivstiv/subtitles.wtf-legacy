@@ -45,6 +45,7 @@ export default {
     },
 
     mounted() {
+        // TitleSearch emits movie-results
         EventBus.$on('movie-results', movies => {
             this.movieResults = movies;
             if(this.$refs.slider)
@@ -53,8 +54,13 @@ export default {
             this.scrollingAnimation = setInterval(() => {
                 this.$refs.slider.scrollLeft = this.$refs.slider.scrollLeft + 1;
             }, 20);
+            this.$nextTick(() => {
+                // The whole view is rendered, so I can safely access or query
+                this.$scrollTo(this.$refs.title, {duration: 2000});
+            })
         });
 
+        // MovieCard emits selected-movie
         EventBus.$on('selected-movie', () => {
             document.getElementById('movieResults').classList.add('hidden');
             setTimeout(() => {
@@ -65,7 +71,6 @@ export default {
 
     updated() {
         this.slider = this.$refs.slider;
-        this.$scrollTo(this.$refs.title, {duration: 2000});
     },
 
     methods:{

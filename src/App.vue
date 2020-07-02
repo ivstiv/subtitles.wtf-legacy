@@ -107,6 +107,8 @@ export default {
 		fileDropped(e) {
 			let droppedFiles = e.dataTransfer.files;
 			if(!droppedFiles) return;
+
+			// UploadFile listens for file-upload
 			EventBus.$emit('file-upload', droppedFiles[0]);
 		},
 

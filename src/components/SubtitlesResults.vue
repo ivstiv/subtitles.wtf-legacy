@@ -26,6 +26,7 @@ export default {
     },
 
     mounted() {
+        // MovieCard emits selected-movie
         EventBus.$on('selected-movie', (movie) => {
             this.method = 'imdbid';
             this.imdbID_hash = movie.imdbid;
@@ -47,6 +48,7 @@ export default {
             this.imdbID_hash = '';
         });
 
+        // LanguageSearch emits selected-lang
         EventBus.$on('selected-lang', (lang) => {
             this.languageCode = lang.code;
 
@@ -54,6 +56,7 @@ export default {
                 this.fetchSubs();
         });
 
+        // LanguageSearch emits selected-lang-clear
         EventBus.$on('selected-lang-clear', () => {
             this.languageCode = '';
         });

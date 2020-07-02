@@ -38,6 +38,7 @@ export default {
     },
 
     mounted() {
+        // App emits file-upload
         EventBus.$on('file-upload', (file) => {
             this.movieFile = file;
             this.emitMovieHash();
@@ -54,6 +55,8 @@ export default {
         removeFile(){
             this.movieFile = null;
             this.$refs.file.value = "";
+            // SearchingDetails listens for selected-hash-clear
+            // SubtitlesResults listens for selected-hash-clear
             EventBus.$emit('selected-hash-clear');
         },
 
@@ -62,6 +65,8 @@ export default {
             this.calculateHash(this.movieFile)
                 .then(hash => {
                     console.log('Movie hash: '+hash);
+                    // SearchingDetails listens for selected-hash
+                    // SubtitlesResults listens for selected-hash
                     EventBus.$emit('selected-hash', hash);
                 });
         },

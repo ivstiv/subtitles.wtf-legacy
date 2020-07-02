@@ -31,6 +31,10 @@ export default {
     methods: {
         selectMovie() {
             console.log('Selected movie:'+this.imdbID);
+            // LanguageSearch listens for selected-movie
+            // MovieResults listens for selected-movie
+            // SearchingDetails listens for selected-movie
+            // SubtitlesResults listens for selected-movie
             EventBus.$emit('selected-movie', {"title": this.title, "imdbid": this.imdbID});
         }
     }

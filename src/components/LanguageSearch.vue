@@ -59,6 +59,7 @@ export default {
     },
 
     mounted() {
+        // MovieCard emits selected-movie
         EventBus.$on('selected-movie', () => {
             this.$scrollTo(this.$refs.langSearch, {duration: 2000});
         });
@@ -88,6 +89,9 @@ export default {
 
         selectLang(code) {
             this.selectedLang = this.languages.filter(lang => {return lang.code === code})[0];
+
+            // SearchingDetails listens for selected-lang 
+            // SubtitlesResults listens for selected-lang 
             EventBus.$emit('selected-lang', this.selectedLang);
             // cleanup
             this.queryLang = '';
@@ -97,6 +101,8 @@ export default {
 
         clearLang() {
             this.selectedLang = "";
+            // SearchingDetails listens for selected-lang-clear
+            // SubtitlesResults listens for selected-lang-clear
             EventBus.$emit('selected-lang-clear', this.selectedLang);
         }
     }

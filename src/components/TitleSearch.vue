@@ -52,6 +52,7 @@ export default {
                         if(data.Error) {
                             this.searchError = data.Error;
                         }else{
+                            // MovieResults listens for movie-results
                             EventBus.$emit('movie-results', data.Search);
                         }
                     })
