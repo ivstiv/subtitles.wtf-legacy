@@ -25,6 +25,8 @@ cp "$project_root/src/api/.env.example" "$project_root/src/api/.env"
 mkdir -p "$project_root/dist/api"
 cp "$project_root/src/api/movies.php" "$project_root/dist/api"
 cp "$project_root/src/api/subtitles.php" "$project_root/dist/api"
-"$project_root/src/api/composer install"
+cd "$project_root/src/api" || exit 1
+composer install
 
-echo "Don't forget to add your OMDb API key to $project_root/src/api/.env"
+echo ""
+echo "Don't forget to add your OMDb API key and User Agent for opensubtitles.org to $project_root/src/api/.env"
