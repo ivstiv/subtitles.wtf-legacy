@@ -4,7 +4,7 @@
         <div class="subtitle-card-rating">
             <h6>
                 <i class="fas fa-download"></i>
-                 {{this.downloads}} | 
+                 {{this.downloads}}   
                 <i class="fas fa-star"></i>
                  {{this.rating}}
             </h6>
