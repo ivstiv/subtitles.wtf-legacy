@@ -1,9 +1,24 @@
 <template>
-    <div>
-        <div class="card">
-            <h1 ref="title" class="title">Subtitles</h1>
-            <p class="note">Results fetched from <a href="https://www.opensubtitles.org" target="_blank">opensubtitles.org</a>.</p>
-        </div>
+    <div class="card">
+        <h1 ref="title" class="title">Subtitles</h1>
+        <p class="note">Results fetched from <a href="https://www.opensubtitles.org" target="_blank">opensubtitles.org</a>.</p>
+
+        <subtitle-card
+            class="subs-results"
+            v-for="(sub, id) in subtitles"
+            v-bind:key="id"
+            v-bind:name="sub.SubFileName"
+            v-bind:downloads="sub.SubDownloadsCnt"
+            v-bind:rating="sub.SubRating"
+            v-bind:openLink="sub.SubtitlesLink"
+            v-bind:downloadLink="sub.ZipDownloadLink"
+        ></subtitle-card>
+        <p v-if="noSubtitles" style="font-weitgh: bold;">
+            <br>
+            Sorry, we couldn't find subtitles for your movie! 
+            Try using both methods (file select and title search) and
+            if you still cannot get any results try <a href="http://easysubtitles.com/" target="_blank">SubDB's</a> app.
+        </p>
     </div>
 </template>
 
@@ -13,15 +28,21 @@
 
 <script>
 import {EventBus} from '../event-bus'
+import SubtitleCard from './SubtitleCard.vue'
 
 export default {
+
+    components: {
+        SubtitleCard
+    },
 
     data() {
         return {
             method: '',
             imdbID_hash: '',
             languageCode: '',
-            subtitles: []
+            subtitles: [],
+            noSubtitles: false
         }
     },
 
@@ -46,6 +67,12 @@ export default {
         EventBus.$on('selected-hash-clear', () => {
             this.method = '';
             this.imdbID_hash = '';
+            document.getElementsByClassName('subs-results').forEach(el => {
+                el.classList.add('hidden');
+            });
+            setTimeout(() => {
+                this.subtitles = [];
+            }, 1000);
         });
 
         // LanguageSearch emits selected-lang
@@ -59,6 +86,12 @@ export default {
         // LanguageSearch emits selected-lang-clear
         EventBus.$on('selected-lang-clear', () => {
             this.languageCode = '';
+            document.getElementsByClassName('subs-results').forEach(el => {
+                el.classList.add('hidden');
+            });
+            setTimeout(() => {
+                this.subtitles = [];
+            }, 1000);
         });
     },
 
@@ -82,6 +115,11 @@ export default {
                 .then(response => response.json())
                     .then(data => {
                         console.log(data);
+                        this.subtitles = data;
+                        if (data.length === 0)
+                            this.noSubtitles = true;
+                        else 
+                            this.noSubtitles = false;
                     })
                     .catch(function(err) {
                         console.log("[SEARCHING SUBS ERROR]: "+err);

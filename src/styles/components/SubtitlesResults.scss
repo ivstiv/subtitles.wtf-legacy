@@ -1,2 +1,5 @@
-@import '../global.scss';
-
+.card {
+    @media screen and (max-width: 1168px) {
+        margin-top: 3rem;
+    }
+}

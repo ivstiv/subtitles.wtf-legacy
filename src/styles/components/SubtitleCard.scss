@@ -1,0 +1,41 @@
+@import '../global.scss';
+
+.subtitle-card-title {
+    padding: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 300px;
+    width: 100%;
+    text-align: center;
+}
+    
+
+.subtitle-card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 50rem;
+    box-shadow: $shadow;
+    border-radius: 2rem;
+    padding: 1rem;
+    margin-top: 2rem;
+    animation: fadein 2s;
+
+    .subtitle-card-rating {
+        display: flex;
+        align-items: center;
+        color: var(--primary);
+    }
+
+    @media (max-width: 560px) {
+        width: 30rem;
+    }
+}
+
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
