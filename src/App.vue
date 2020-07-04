@@ -23,7 +23,7 @@
 					</div>
 				</div>
 
-				<div class="chip">
+				<div class="chip" @click="toggleDarkMode">
 					<div class="chip__icon">
 						<i class="fas fa-moon"></i>
 					</div>
@@ -103,6 +103,19 @@ export default {
 		SearchingDetails,
 		SubtitlesResults
 	},
+
+	mounted() {
+		if(localStorage.darkModeEnabled === 'true') {
+			document.documentElement.style.setProperty('--primary', '#110393');
+			document.documentElement.style.setProperty('--primary-light', '#110393');
+			document.documentElement.style.setProperty('--primary-dark', '#191B1C');
+			document.documentElement.style.setProperty('--greyLight-1', '#222527');
+			document.documentElement.style.setProperty('--greyLight-2', '#191B1C');
+			document.documentElement.style.setProperty('--white', '#191B1C');
+			document.documentElement.style.setProperty('color', '#fff');
+		}
+	},
+
 	methods: {
 		fileDropped(e) {
 			let droppedFiles = e.dataTransfer.files;
@@ -114,6 +127,30 @@ export default {
 
 		redirectTo(url) {
 			window.open(url, '_blank');
+		},
+
+		toggleDarkMode() {
+			if(localStorage.darkModeEnabled === 'true') {
+				localStorage.darkModeEnabled = false;
+				
+				document.documentElement.style.setProperty('--primary', '#6d5dfc');
+				document.documentElement.style.setProperty('--primary-light', '#8abdff');
+				document.documentElement.style.setProperty('--primary-dark', '#5b0eeb');
+				document.documentElement.style.setProperty('--greyLight-1', '#e4ebf5');
+				document.documentElement.style.setProperty('--greyLight-2', '#c8d0e7');
+				document.documentElement.style.setProperty('--white', '#ffffff');
+				document.documentElement.style.setProperty('color', '#000');
+			}else{
+				localStorage.darkModeEnabled = true;
+				document.documentElement.style.setProperty('--primary', '#110393');
+				document.documentElement.style.setProperty('--primary-light', '#110393');
+				document.documentElement.style.setProperty('--primary-dark', '#191B1C');
+				document.documentElement.style.setProperty('--greyLight-1', '#222527');
+				document.documentElement.style.setProperty('--greyLight-2', '#191B1C');
+				document.documentElement.style.setProperty('--white', '#191B1C');
+				document.documentElement.style.setProperty('color', '#fff');
+			}
+			console.log('darkModeEnabled: '+localStorage.darkModeEnabled);
 		}
 	}
 };

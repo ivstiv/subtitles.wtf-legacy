@@ -13,7 +13,7 @@
             v-bind:openLink="sub.SubtitlesLink"
             v-bind:downloadLink="sub.ZipDownloadLink"
         ></subtitle-card>
-        <p v-if="noSubtitles" style="font-weitgh: bold;">
+        <p class="note" v-if="noSubtitles" style="font-weight: bold;">
             <br>
             Sorry, we couldn't find subtitles for your movie! 
             Try using both methods (file select and title search) and

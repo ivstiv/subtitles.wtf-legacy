@@ -12,6 +12,21 @@
 	--scrollbarBG: #CFD8DC;
 	--thumbBG: #90A4AE;
 }
+/* DARK THEME
+:root {
+	--primary: #110393;
+	--primary-light: #110393;
+	--primary-dark: #191B1C;
+	--greyLight-1: #222527;
+	--greyLight-2: #191B1C;
+	--white: #191B1C;
+	color: white;
+	
+}
+*/
+a,i {
+	color: #7566FC;
+}
 
 $shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2),
 		-0.2rem -0.2rem 0.5rem var(--white);
